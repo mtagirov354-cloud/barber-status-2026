@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARBER STATUS 2026 | Барбершоп в Дербенте</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>BARBER <span>STATUS 2026</span></h1>
+                <p class="tagline">Профессиональный барбершоп в Дербенте</p>
+            </div>
+            <nav>
+                <a href="#services">Услуги</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#booking">Запись</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="container">
+            <h2>СТИЛЬНЫЙ ВНЕШНИК —<br>ВАШ СТАТУС 2026</h2>
+            <p>Республика Дагестан, Дербент, ул. Гагарина, 12</p>
+            <a href="#booking" class="btn">Записаться онлайн</a>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <!-- Услуги будут добавлены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            
+            <div class="reviews-container">
+                <div class="reviews-grid" id="reviewsGrid">
+                    <!-- Отзывы будут загружены через JavaScript -->
+                </div>
+                
+                <!-- Статистика отзывов -->
+                <div class="reviews-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="averageRating">5.0</span>
+                        <span class="stat-label">Средняя оценка</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalReviews">0</span>
+                        <span class="stat-label">Всего отзывов</span>
+                    </div>
+                </div>
+                
+                <!-- Форма добавления отзыва -->
+                <div class="add-review-form">
+                    <h3>Оставить отзыв</h3>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label for="reviewName">Ваше имя:</label>
+                            <input type="text" id="reviewName" name="name" required placeholder="Ваше имя">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Оценка:</label>
+                            <div class="rating-stars">
+                                <input type="radio" id="star5" name="rating" value="5" checked>
+                                <label for="star5" title="Отлично">★</label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4" title="Хорошо">★</label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3" title="Нормально">★</label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2" title="Плохо">★</label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1" title="Ужасно">★</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reviewService">Услуга:</label>
+                            <select id="reviewService" name="service">
+                                <option value="">Любая услуга</option>
+                                <option value="Детская стрижка">Детская стрижка</option>
+                                <option value="Мужская стрижка">Мужская стрижка</option>
+                                <option value="Бритье опасным лезвием">Бритье опасным лезвием</option>
+                                <option value="Моделирование бороды">Моделирование бороды</option>
+                                <option value="Биозавивка">Биозавивка</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reviewText">Текст отзыва:</label>
+                            <textarea id="reviewText" name="text" required 
+                                      placeholder="Поделитесь вашими впечатлениями..." 
+                                      rows="4" maxlength="500"></textarea>
+                            <div class="char-counter">Осталось символов: <span id="charCount">500</span></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-submit">Отправить отзыв</button>
+                    </form>
+                    
+                    <div id="reviewMessage" class="message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма записи -->
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Онлайн запись</h2>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="service">Выберите услугу:</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Выберите услугу --</option>
+                        <option value="Детская стрижка">Детская стрижка - 500 ₽</option>
+                        <option value="Биозавивка">Биозавивка - 4000 ₽</option>
+                        <option value="Бритье опасным лезвием">Бритье опасным лезвием - 500 ₽</option>
+                        <option value="Мужская стрижка">Мужская стрижка - 800 ₽</option>
+                        <option value="Камуфляж седины">Камуфляж седины - 500 ₽</option>
+                        <option value="Уход за кожей лица">Уход за кожей лица - 400 ₽</option>
+                        <option value="Моделирование бороды / бритье">Моделирование бороды / бритье - 500 ₽</option>
+                        <option value="Коррекция воском">Коррекция воском - 200 ₽</option>
+                        <option value="Обучение «Барбер с нуля»">Обучение «Барбер с нуля» - 1 ₽</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Дата:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Время:</label>
+                    <select id="time" name="time" required>
+                        <option value="">-- Выберите время --</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Номер телефона:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+                
+                <button type="submit" class="btn btn-submit">Записаться</button>
+            </form>
+            
+            <div id="message" class="message"></div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Адрес</h3>
+                        <p>Республика Дагестан, Дербент,<br>улица Гагарина, 12</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Телефон / WhatsApp</h3>
+                        <p><a href="tel:+79634262233">+7 963 426-22-33</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Часы работы</h3>
+                        <p>Пн-Пт: 10:00 - 20:00<br>Сб-Вс: 10:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 BARBER STATUS. Все права защищены.</p>
+            <p class="admin-link">
+                <a href="../admin_panel/admin.html" target="_blank">Админ-панель</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для изображений -->
+    <div id="imageModal" class="review-image-modal">
+        <span class="review-image-modal-close">&times;</span>
+        <img class="review-image-modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

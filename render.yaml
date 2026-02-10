@@ -1,0 +1,27 @@
+services:
+  # Веб-сервис
+  - type: web
+    name: barber-status-2026
+    runtime: python
+    plan: free  # или starter для продакшена
+    branch: main
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        value: BARBERSTATUSADM
+      - key: PORT
+        value: 10000
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app.server:app
+    healthCheckPath: /
+    autoDeploy: true
+
+# # Опционально: база данных (если понадобится позже)
+# databases:
+#   - name: barberstatusdb
+#     databaseName: barberstatus
+#     plan: free
+#     ipAllowList: [] 

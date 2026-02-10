@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель BARBER STATUS 2026</title>
+    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Сайдбар -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>BARBER <span>STATUS 2026</span></h2>
+                <p>Админ-панель</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="#orders" class="active"><i class="fas fa-list"></i> Заявки</a>
+                <a href="#reviews"><i class="fas fa-comments"></i> Отзывы</a>
+                <a href="#stats"><i class="fas fa-chart-bar"></i> Статистика</a>
+                <a href="../client_site/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Сайт</a>
+            </nav>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <header class="admin-header">
+                <h1>Управление записями</h1>
+                <div class="admin-info">
+                    <span id="currentDate"></span>
+                    <button id="refreshBtn" class="btn-refresh">
+                        <i class="fas fa-sync-alt"></i> Обновить
+                    </button>
+                </div>
+            </header>
+
+            <!-- Фильтры -->
+            <div class="filters">
+                <select id="statusFilter">
+                    <option value="all">Все статусы</option>
+                    <option value="Новая">Новые</option>
+                    <option value="Подтверждена">Подтвержденные</option>
+                    <option value="Выполнена">Выполненные</option>
+                    <option value="Отменена">Отмененные</option>
+                </select>
+                
+                <input type="date" id="dateFilter">
+                
+                <button id="clearFilters" class="btn-clear">Сбросить фильтры</button>
+            </div>
+
+            <!-- Таблица заявок -->
+            <div class="orders-table-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Дата</th>
+                            <th>Время</th>
+                            <th>Клиент</th>
+                            <th>Телефон</th>
+                            <th>Услуга</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- Заявки будут загружены через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Статистика -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Новые заявки</h3>
+                    <div class="stat-number" id="newOrders">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>На сегодня</h3>
+                    <div class="stat-number" id="todayOrders">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Выполнено</h3>
+                    <div class="stat-number" id="completedOrders">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Всего заявок</h3>
+                    <div class="stat-number" id="totalOrders">0</div>
+                </div>
+            </div>
+
+            <!-- Управление отзывами -->
+            <section id="reviewsManagement" class="reviews-management">
+                <h2 class="section-title">Управление отзывами</h2>
+                
+                <div class="filters">
+                    <select id="reviewStatusFilter">
+                        <option value="all">Все отзывы</option>
+                        <option value="pending">Ожидают модерации</option>
+                        <option value="approved">Одобренные</option>
+                        <option value="rejected">Отклоненные</option>
+                    </select>
+                    
+                    <select id="reviewRatingFilter">
+                        <option value="all">Все оценки</option>
+                        <option value="5">★ 5 звезд</option>
+                        <option value="4">★ 4 звезды</option>
+                        <option value="3">★ 3 звезды</option>
+                        <option value="2">★ 2 звезды</option>
+                        <option value="1">★ 1 звезда</option>
+                    </select>
+                    
+                    <input type="text" id="reviewSearch" placeholder="Поиск по имени или тексту...">
+                </div>
+                
+                <div class="reviews-table-container">
+                    <table class="reviews-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Дата</th>
+                                <th>Клиент</th>
+                                <th>Услуга</th>
+                                <th>Оценка</th>
+                                <th>Текст</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewsTableBody">
+                            <!-- Отзывы будут загружены через JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Модальное окно для изменения статуса -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Изменение статуса заявки</h3>
+            <p id="modalOrderInfo"></p>
+            
+            <div class="status-options">
+                <button class="status-btn new" data-status="Новая">Новая</button>
+                <button class="status-btn confirmed" data-status="Подтверждена">Подтверждена</button>
+                <button class="status-btn completed" data-status="Выполнена">Выполнена</button>
+                <button class="status-btn cancelled" data-status="Отменена">Отменена</button>
+            </div>
+            
+            <button id="saveStatus" class="btn-save">Сохранить</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для просмотра отзыва -->
+    <div id="reviewFullModal" class="review-full-modal">
+        <div class="review-full-modal-content">
+            <span class="review-full-modal-close">&times;</span>
+            <h3 id="modalReviewTitle"></h3>
+            <div id="modalReviewContent"></div>
+        </div>
+    </div>
+
+    <script src="admin_script.js"></script>
+</body>
+</html> 
